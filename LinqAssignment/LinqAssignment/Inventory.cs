@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LinqAssignment
 {
-	public class Invetory
+	public class Inventory
 	{
-		public List<Product> Retrieve()
+		/// <summary>
+		/// Retrieves the products.
+		/// </summary>
+		/// <returns></returns>
+		public List<Product> RetrieveProducts()
 		{
 			List<Product> productList = new List<Product>
 			{
@@ -71,6 +71,36 @@ namespace LinqAssignment
 				}
 			};
 			return productList;
+		}
+
+		/// <summary>
+		/// Retrieves the spec.
+		/// </summary>
+		/// <returns></returns>
+		public List<BrandSpecifications> RetrieveSpec()
+		{
+			List<BrandSpecifications> brandSpec = new List<BrandSpecifications>
+			{
+				new BrandSpecifications()
+				{
+					ProductBrand = "Brand_1",
+					Year = 1980,
+					Description = "Description_1"
+				},
+				new BrandSpecifications()
+				{
+				ProductBrand = "Brand_2",
+				Year = 1990,
+				Description = "Description_2"
+				},
+				new BrandSpecifications()
+				{
+					ProductBrand = "Brand_3",
+					Year = 2000,
+					Description = "Description_3"
+				}
+			};
+			return brandSpec;
 		}
 	}
 }
