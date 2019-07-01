@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using LinqAssignment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -203,6 +204,36 @@ namespace Tests
 			//assert
 			Assert.IsNotNull(result);
 			Assert.IsTrue(products.Count > result.Count());
+		}
+
+		[TestMethod]
+		public void SequenceEqual()
+		{
+			//arrange
+			IList<string> strList1 = new List<string>() { "One", "Two", "Three", "Four", "Three" };
+			IList<string> strList2 = new List<string>() { "One", "Two", "Three", "Four", "Three" };
+			//act
+			bool isEqual = strList1.SequenceEqual(strList2);
+			//assert
+			Assert.IsTrue(isEqual);
+		}
+
+		[TestMethod]
+		public void Mixed()
+		{
+			IList mixedList = new ArrayList();
+			mixedList.Add(0);
+			mixedList.Add("zero");
+			mixedList.Add(inventory.RetrieveProducts());
+			//
+			var stringResult = from s in mixedList.OfType<string>()
+				select s;
+
+			var intResult = from s in mixedList.OfType<int>()
+				select s;
+			//
+			Assert.IsTrue(stringResult.Contains("zero"));
+			Assert.IsTrue(intResult.Contains(0));
 		}
 	}
 }
