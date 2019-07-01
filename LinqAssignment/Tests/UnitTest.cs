@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LinqAssignment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -177,5 +178,31 @@ namespace Tests
 			}
 		}
 		private Func<Product, bool> isInStock = p => p.ProductStock > 0;
+
+		[TestMethod]
+		public void DefaultIfEmpty()
+		{
+			//arrange
+			var emptyProductList = new List<string>();
+			//act
+			var emptyResult = emptyProductList.DefaultIfEmpty();
+			var valueResult = emptyProductList.DefaultIfEmpty("value");
+			//assert
+			Assert.IsNotNull(emptyResult);
+			Assert.IsNotNull(valueResult);
+			Assert.IsTrue(valueResult.Contains("value"));
+		}
+
+		[TestMethod]
+		public void ExceptProductsThatCannotBeOrdered()
+		{
+			//arrange
+			var products = inventory.RetrieveProducts();
+			//act
+			var result = products.Except(products.FindAll(p=>p.AvailableToOrder==false));
+			//assert
+			Assert.IsNotNull(result);
+			Assert.IsTrue(products.Count > result.Count());
+		}
 	}
 }
