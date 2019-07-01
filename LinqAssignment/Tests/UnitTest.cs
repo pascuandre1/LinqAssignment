@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using LinqAssignment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Tests
 {
